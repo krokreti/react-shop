@@ -13,14 +13,15 @@ type ButtonProps = {
 
 const CustomButton: React.FC<ButtonProps> = (props) => {
     return (
-    <Button 
-        variant={props.variant ?? "contained"}
-        disabled={props.disabled ?? false}
-        startIcon={props.startIcon}
-        onClick={props.onClick}
-    >
-        {props.text}
-    </Button>)
+        <Button 
+            variant={props.variant ?? "contained"}
+            disabled={props.disabled ?? false}
+            startIcon={props.startIcon}
+            onClick={props.onClick}
+            >
+            {props.text}
+        </Button>
+    )
 }
 
 export default CustomButton;
