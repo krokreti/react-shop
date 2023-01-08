@@ -58,6 +58,8 @@ const Navbar = () => {
             Shop
           </Typography>
 
+          {/* basicamente, uma barra para mobile e uma para desktop */}
+          
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"

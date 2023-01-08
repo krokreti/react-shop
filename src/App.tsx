@@ -6,7 +6,10 @@ function App() {
 
   return (
     <div className="App">
-      <Appbar></Appbar>
+      <Appbar/>
+      <main>
+
+      </main>
     </div>
   );
 }
