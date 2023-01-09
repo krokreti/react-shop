@@ -1,14 +1,13 @@
 import { TextField } from "@mui/material";
 
-type VariantType = "outlined" | "filled" | "standard" | undefined
-
 type InputPropType = {
     id: string, 
     label: string, 
     type: string, 
-    variant: VariantType, 
+    variant?: "outlined" | "filled" | "standard" | undefined, 
     defaultValue?: string, 
     required?: boolean, 
+    error?: boolean,
     helperText?: string,
     value?: string,
     disabled?: boolean,
@@ -23,6 +22,7 @@ const Input: React.FC<InputPropType> = props => {
             variant={props.variant ?? "outlined" }
             id={props.id}
             label={props.label}
+            error={props.error ?? false}
             helperText={props.helperText}
             required={props.required ?? false}
             disabled={props.disabled ?? false}
