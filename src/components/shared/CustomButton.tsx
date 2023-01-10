@@ -15,6 +15,7 @@ const CustomButton: React.FC<ButtonProps> = (props) => {
     return (
         <Button 
             variant={props.variant ?? "contained"}
+            type={"button"}
             disabled={props.disabled ?? false}
             startIcon={props.startIcon}
             onClick={props.onClick}

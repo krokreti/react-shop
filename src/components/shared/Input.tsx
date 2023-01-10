@@ -12,6 +12,7 @@ type InputPropType = {
     value?: string,
     disabled?: boolean,
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+    onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void,
 }
 
 const Input: React.FC<InputPropType> = props => {
@@ -29,6 +30,7 @@ const Input: React.FC<InputPropType> = props => {
             type={props.type ?? "text"}
             size={"small"}
             onChange={props.onChange}
+            onBlur={props.onBlur}
         />
     )
 }
