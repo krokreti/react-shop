@@ -27,6 +27,7 @@ const Input: React.FC<InputPropType> = props => {
             required={props.required ?? false}
             disabled={props.disabled ?? false}
             type={props.type ?? "text"}
+            size={"small"}
             onChange={props.onChange}
         />
     )
