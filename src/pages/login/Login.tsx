@@ -54,6 +54,7 @@ const Login = () => {
                 width={'20em'}
                 height={'fit-content'}
                 borderRadius={'30px'}
+                boxShadow={'rgba(0, 0, 0, 0.35) 0px 5px 15px'}
             >
                 <Stack
                     direction={"column"}
