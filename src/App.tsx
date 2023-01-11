@@ -1,5 +1,7 @@
 import './App.css';
 import Appbar from './components/layout/Appbar';
+import { Outlet } from "react-router-dom";
+
 
 function App() {
 
@@ -7,9 +9,7 @@ function App() {
   return (
     <div className="App">
       <Appbar/>
-      <main>
-        
-      </main>
+      <Outlet />
     </div>
   );
 }
