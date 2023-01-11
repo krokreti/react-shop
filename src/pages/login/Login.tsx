@@ -5,7 +5,7 @@ import CustomButton from "../../components/shared/CustomButton";
 import Input from "../../components/shared/Input";
 import React, { useEffect, useState } from "react";
 import useInput from "../../hooks/use-input";
-
+import { Link } from "react-router-dom";
 
 const Login = () => {
     const [formIsValid, setFormIsValid] = useState(true);
@@ -35,10 +35,7 @@ const Login = () => {
     }, [enteredLoginIsValid, enteredPasswordIsValid])
 
     const submitHandler = () => {
-        // if (!enteredLoginIsValid || !enteredPasswordIsValid) {
-        //     return
-        // }
-
+        // TO DO 
         console.log("validated")
     }
 
@@ -46,16 +43,14 @@ const Login = () => {
     const passwordErrorMessage = enteredPasswordHasError ? "Please, enter a valid password!" : "" ;
 
     return (
-        <Container sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <Box
                 p={4}
-                mt={6}
                 bgcolor={'#cfe8fc'}
                 width={'20em'}
                 height={'fit-content'}
                 borderRadius={'30px'}
                 boxShadow={'rgba(0, 0, 0, 0.35) 0px 5px 15px'}
-                
             >
                 <Stack
                     direction={"column"}
@@ -89,7 +84,7 @@ const Login = () => {
                     />
                     <Box rowGap={2} sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
                         <span>Don't have an account yet?</span>
-                        <span>Sign up!</span>
+                        <Link to={'/signup'}>Sign up!</Link>
                     </Box>
                 </Stack>
             </Box>
