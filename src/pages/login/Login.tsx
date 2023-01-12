@@ -5,10 +5,14 @@ import CustomButton from "../../components/shared/CustomButton";
 import Input from "../../components/shared/Input";
 import React, { useEffect, useState } from "react";
 import useInput from "../../hooks/use-input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { authActions } from "../../store/auth-slice";
+import { useAppDispatch } from "../../hooks/redux-hooks";
 
 const Login = () => {
-    const [formIsValid, setFormIsValid] = useState(true);
+    const [formIsValid, setFormIsValid] = useState<boolean>(true);
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const {
         value: enteredLogin,
@@ -34,9 +38,16 @@ const Login = () => {
         }
     }, [enteredLoginIsValid, enteredPasswordIsValid])
 
+    useEffect(() => {
+
+    })
+
     const submitHandler = () => {
-        // TO DO 
+        
         console.log("validated")
+        dispatch(authActions.login(enteredLogin));
+        navigate("/home")
+        
     }
 
     const loginErrorMessage = enteredLoginHasError ? "Please, enter a valid email!" : "" ;
