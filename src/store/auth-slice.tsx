@@ -8,7 +8,7 @@ interface authState {
 
 const retrieveStoredToken = () => {
     const storedToken = localStorage.getItem('token');
-    let initialToken = '';
+    let initialToken: string = '' ;
     let userLoggedIn = false;
     if(storedToken) {
         initialToken = storedToken;

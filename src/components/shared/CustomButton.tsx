@@ -6,8 +6,9 @@ type ButtonProps = {
     text: string,
     variant?: ButtonVariantType,
     disabled?: boolean,
-    startIcon?: React.ReactNode
-    endIcon?: React.ReactNode
+    startIcon?: React.ReactNode,
+    endIcon?: React.ReactNode,
+    sx?: {}
     onClick: () => void
 }
 
@@ -19,6 +20,7 @@ const CustomButton: React.FC<ButtonProps> = (props) => {
             disabled={props.disabled ?? false}
             startIcon={props.startIcon}
             onClick={props.onClick}
+            sx={props.sx}
             >
             {props.text}
         </Button>

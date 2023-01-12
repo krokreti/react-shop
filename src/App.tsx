@@ -7,18 +7,19 @@ import { useEffect } from 'react';
 function App() {
   const navigate = useNavigate();
   const isLoggedIn = (useAppSelector(state => state.auth.isLoggedIn))
+  
+  // useEffect(() => {
+  //   if(!isLoggedIn) {
+  //     navigate("login")
+  //   }
+  // }, [isLoggedIn])
 
-  useEffect(() => {
-    if(!isLoggedIn) {
-      navigate("login")
-    }
-  }, [isLoggedIn])
+  // TO DO
 
   return (
     <div className="App">
       <Appbar/>
-      <Outlet/>
-      
+      {isLoggedIn && (<Outlet/>)}
     </div>
   );
 }

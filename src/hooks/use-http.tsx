@@ -4,17 +4,16 @@ interface requestType {
     url: string,
     method?: "GET" | "POST" | "PATCH" | "DELETE",
     headers?: object | {},
-    body?: object
+    body?: object | {}
 }
 
 const useHttp = () => {
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<any>(null);
 
     const sendRequest = useCallback(async (requestConfig: requestType, applyData: any) => {
         setIsLoading(true);
         setError(null);
-
         try {
             const response = await fetch(requestConfig.url, {
               method: requestConfig.method ? requestConfig.method : 'GET',

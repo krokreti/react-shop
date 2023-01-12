@@ -1,18 +1,23 @@
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box"
 import Stack from '@mui/material/Stack';
-import CustomButton from "../../components/shared/CustomButton";
 import Input from "../../components/shared/Input";
 import React, { useEffect, useState } from "react";
 import useInput from "../../hooks/use-input";
 import { Link, useNavigate } from "react-router-dom";
 import { authActions } from "../../store/auth-slice";
 import { useAppDispatch } from "../../hooks/redux-hooks";
+import useHttp from "../../hooks/use-http";
+import CustomButton from "../../components/shared/CustomButton";
+import CircularProgress from '@mui/material/CircularProgress';
+import User from "../../models/User";
+import CustomLoadingButton from "../../components/shared/CustomLoadingButton";
 
 const Login = () => {
     const [formIsValid, setFormIsValid] = useState<boolean>(true);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const { error: connectionError, isLoading, sendRequest: sendLoginRequest } = useHttp();
 
     const {
         value: enteredLogin,
@@ -38,16 +43,25 @@ const Login = () => {
         }
     }, [enteredLoginIsValid, enteredPasswordIsValid])
 
-    useEffect(() => {
-
-    })
-
     const submitHandler = () => {
-        
-        console.log("validated")
-        dispatch(authActions.login(enteredLogin));
-        navigate("/home")
-        
+
+        sendLoginRequest({
+            url: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDYL8MXKHBY8-munFeQbKZd43SbAZneRR4',
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: {
+                email: enteredLogin,
+                password: enteredPassword,
+                returnSecureToken: true
+            }
+            
+        }, (data: User) => {
+            console.log(data);
+            dispatch(authActions.login(data.idToken));
+            navigate("/home")
+        })
     }
 
     const loginErrorMessage = enteredLoginHasError ? "Please, enter a valid email!" : "" ;
@@ -88,10 +102,22 @@ const Login = () => {
                         error={enteredPasswordHasError} 
                         helperText={passwordErrorMessage}
                     />
+                    {/* {!isLoading && (
                     <CustomButton 
                         text="Login" 
                         disabled={!formIsValid}
                         onClick={submitHandler} 
+                    />)}
+                    {isLoading && (
+                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <CircularProgress />
+                        </Box>
+                    )} */}
+                    <CustomLoadingButton 
+                        text="Login"
+                        isLoading={isLoading}
+                        disabled={!formIsValid}
+                        onClick={submitHandler}
                     />
                     <Box rowGap={2} sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
                         <span>Don't have an account yet?</span>

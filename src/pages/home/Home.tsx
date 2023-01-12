@@ -5,24 +5,23 @@ import useHttp from "../../hooks/use-http";
 import { authActions, authStatus } from "../../store/auth-slice";
 
 const Home = () => {
-    const auth = useAppSelector(authStatus);
-    const teste = useAppSelector(state => state.auth.isLoggedIn)
+    // const auth = useAppSelector(authStatus);
+    // const teste = useAppSelector(state => state.auth.isLoggedIn)
     const loggedUser = useAppSelector(state => state.auth.token)
-    const dispatch = useAppDispatch();
+    // const dispatch = useAppDispatch();
     // dispatch(authActions.login())
-    console.log(teste)
+    // console.log(teste)
 
     const { error, isLoading, sendRequest } = useHttp();
 
     useEffect(() => {
-        const newObjeto = (test: any) => {
-            console.log(test)
-        }
 
         sendRequest({
             url: "https://dummyjson.com/products/1",
         },
-            newObjeto
+            (data: any) => {
+                console.log(data)
+            }
         )
 
     }, [])
