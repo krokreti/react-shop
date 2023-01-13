@@ -12,6 +12,10 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useAppDispatch } from '../../hooks/redux-hooks';
+import { useNavigate } from 'react-router-dom';
+import { authActions } from '../../store/auth-slice';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -19,6 +23,8 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
   
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
       setAnchorElNav(event.currentTarget);
@@ -34,6 +40,11 @@ const Navbar = () => {
     const handleCloseUserMenu = () => {
       setAnchorElUser(null);
     };
+
+    const handleLogout = () => {
+      dispatch(authActions.logout())
+      navigate("/login")
+    }
     
     return (
         <AppBar position="static">
@@ -130,7 +141,7 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Davi Pinheiro" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -149,11 +160,7 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleLogout} > <LogoutIcon sx={{ marginRight:'.3em' }}/> Logout</MenuItem>
             </Menu>
           </Box>
         </Toolbar>
