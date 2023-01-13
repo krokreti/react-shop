@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import useHttp from "../../hooks/use-http";
 import { authActions, authStatus } from "../../store/auth-slice";
+import Product from "../../models/Product";
 
 const Home = () => {
     // const auth = useAppSelector(authStatus);
@@ -19,7 +20,7 @@ const Home = () => {
         sendRequest({
             url: "https://dummyjson.com/products/1",
         },
-            (data: any) => {
+            (data: Product) => {
                 console.log(data)
             }
         )
@@ -28,8 +29,10 @@ const Home = () => {
 
     return (
         <Container>
-            <h1>Home</h1>
-            <h3>{loggedUser}</h3>
+            <Box border={"1px solid red;"} >
+                <h1>Home</h1>
+                <p>{loggedUser}</p>
+            </Box>
         </Container>
     )
 }
