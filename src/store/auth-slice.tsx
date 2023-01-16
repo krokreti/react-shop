@@ -13,6 +13,7 @@ const retrieveStoredToken = () => {
     if(storedToken) {
         initialToken = storedToken;
         userLoggedIn = true;
+        console.log(userLoggedIn)
     }
     return {
         token: initialToken,
@@ -32,6 +33,7 @@ const authSlice = createSlice({
         login(state, action: PayloadAction<string>) {
             localStorage.setItem('token', action.payload)
             state.token = action.payload;
+            state.isLoggedIn = true
         },
         logout: () => {
             localStorage.removeItem('token')

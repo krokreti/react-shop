@@ -1,5 +1,6 @@
 import { Box, Container, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import ProductItem from "../../components/ProductItem";
 import useHttp from "../../hooks/use-http";
 import Product from "../../models/Product";
@@ -34,7 +35,11 @@ const Home = () => {
                     <Stack border={"1px solid yellow;"} direction={'row'} display={"flex"} flexWrap={"wrap"} gap={2} >
                         {/* <ProductItem product={product}/> */}
                         {
-                            productList.map((product) => <ProductItem key={product.id} product={product}/>)
+                            productList.map((product) => 
+                            <Link to={`/product-detail/${product.id}` } key={product.id} style={{ textDecoration:'none' }}>
+                                <ProductItem product={product}/>
+                            </Link>
+                            )
                         }
                     </Stack>
             </Box>

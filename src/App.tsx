@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <Appbar/>
-      {isLoggedIn ? <Outlet/> : <Navigate to={"/login"}/>}
+        {isLoggedIn ? <Outlet/> : <Navigate to={"/login"}/>}
     </div>
   );
 }

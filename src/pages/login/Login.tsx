@@ -41,7 +41,7 @@ const Login = () => {
         }
     }, [enteredLoginIsValid, enteredPasswordIsValid])
 
-    const submitHandler = () => {
+    const submitHandler = async() => {
 
         sendLoginRequest({
             url: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDYL8MXKHBY8-munFeQbKZd43SbAZneRR4',
