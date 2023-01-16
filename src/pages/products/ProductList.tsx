@@ -24,7 +24,7 @@ const ProductList = () => {
  return (<Container>
  <Box>
      <Stack my={"2em"} gap={2}>
-         <h1>Home</h1>
+         <h1>Products</h1>
          <h3>Here you find the best products!</h3>
      </Stack>
      <Stack direction={'row'} display={"flex"} flexWrap={"wrap"} gap={2} justifyContent={"center"}>

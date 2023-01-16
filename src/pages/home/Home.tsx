@@ -1,4 +1,4 @@
-import { Box, Container, Stack } from "@mui/material";
+import { Box, Container, Stack, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ProductItem from "../../components/ProductItem";
@@ -12,12 +12,31 @@ const Home = () => {
     // const dispatch = useAppDispatch();
     // dispatch(authActions.login())
     // console.log(teste)
+    const [trending, setTrending] = useState<Product[]>([]);
+    const [hot, setHot] = useState<Product[]>([]);
+    const [comingSoon, setComingSoon] = useState<Product[]>([]);
 
+    const { error, isLoading, sendRequest } = useHttp();
+
+    useEffect(() => {
+        
+    }, [])
 
     return (
-        <div>
-            oi
-        </div>
+        <Box >
+            <Stack direction={"column"} display={'flex'} justifyContent={'center'} alignItems={'center'} padding={4} >
+
+            <h1>Trending</h1>
+            <Paper elevation={3} sx={{ maxWidth:'50em', width:'100%', display:'flex', justifyContent:'space-evenly', flexWrap:'wrap' }}> 
+                
+            </Paper>
+
+            <h1>Hot</h1>
+
+            <h1>Coming soon...</h1>
+
+            </Stack>
+        </Box>
     )
 }
 
