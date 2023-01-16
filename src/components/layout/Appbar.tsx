@@ -18,7 +18,7 @@ import { useNavigate } from 'react-router-dom';
 import { authActions } from '../../store/auth-slice';
 
 const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -42,6 +42,7 @@ const Navbar = () => {
     };
 
     const handleLogout = () => {
+      setAnchorElUser(null);
       dispatch(authActions.logout())
       navigate("/login")
     }
