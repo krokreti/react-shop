@@ -8,10 +8,10 @@ const ProductItem: React.FC<{product: Product | undefined}> = (props) => {
             elevation={3}
             sx={{ width:'10em' }}
         >   
-            <Stack direction={"column"} display={"flex"} justifyContent={"space-between"} >
+            <Stack direction={"column"} display={"flex"} justifyContent={"space-between"} height={"15em"} >
                 <Stack direction={"column"}>
                     <img src={props.product?.thumbnail} alt={props.product?.title} loading="lazy" style={{ width: '100%', borderTopRightRadius: '3px', borderTopLeftRadius: '3px', height: '7em' }}/>
-                    <span><strong>{props.product?.title}</strong></span>
+                    <span style={{ padding: '0.2em 0'}}><strong>{props.product?.title}</strong></span>
                     <span style={{ textAlign:"left", padding:"0 1em", width:"calc(100%)", overflow:'hidden', whiteSpace:'nowrap', textOverflow:'ellipsis' }}>{props.product?.description}</span>
                 </Stack>
                 <Stack display={"flex"} direction={"row"} alignItems={"center"} justifyContent={"space-between"} margin={1}>

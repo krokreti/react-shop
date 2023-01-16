@@ -8,14 +8,15 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useAppDispatch } from '../../hooks/redux-hooks';
 import { useNavigate } from 'react-router-dom';
 import { authActions } from '../../store/auth-slice';
+import { Button } from '@mui/material';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -45,6 +46,10 @@ const Navbar = () => {
       setAnchorElUser(null);
       dispatch(authActions.logout())
       navigate("/login")
+    }
+
+    const handleProductsClick = () => {
+      navigate('products')
     }
     
     return (
@@ -83,6 +88,7 @@ const Navbar = () => {
             >
               <MenuIcon />
             </IconButton>
+
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -101,11 +107,7 @@ const Navbar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleProductsClick} > <ShoppingBasketIcon sx={{ marginRight:'.3em' }}/> Products</MenuItem>
             </Menu>
           </Box>
           <ShoppingBagIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -128,15 +130,7 @@ const Navbar = () => {
             Shop
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button onClick={handleProductsClick} sx={{ my: 2, color: 'white', display: 'block' }}>Products</Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
