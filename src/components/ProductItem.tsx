@@ -8,7 +8,7 @@ const ProductItem: React.FC<{product: Product | undefined}> = (props) => {
     return (
         <Paper
             elevation={3}
-            sx={{ width:'10em', transition:'.5s',
+            sx={{ width:'13em', transition:'.5s',
                 ':hover': {
                     transform: 'scale(1.1)'
                 }

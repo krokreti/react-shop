@@ -20,7 +20,7 @@ const ProductList = () => {
     }, [sendRequest])
 
  return (<Container>
- <Box>
+ <Box marginBottom={'4em'}>
      <Stack my={"2em"} gap={2} sx={{ color:'white'}}>
          <h1>Products</h1>
          <h3>Here you find the best products!</h3>

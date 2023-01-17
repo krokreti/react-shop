@@ -13,10 +13,15 @@ import MenuItem from '@mui/material/MenuItem';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import LogoutIcon from '@mui/icons-material/Logout';
+import PersonIcon from '@mui/icons-material/Person';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useAppDispatch } from '../../hooks/redux-hooks';
 import { useNavigate } from 'react-router-dom';
 import { authActions } from '../../store/auth-slice';
-import { Button } from '@mui/material';
+import { Badge, Button, Divider, ListItemIcon } from '@mui/material';
+import { Link } from 'react-router-dom';
+import CategoryIcon from '@mui/icons-material/Category';
+import CategoriesMenu from './CategoriesMenu';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -60,8 +65,7 @@ const Navbar = () => {
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="/"
+
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -72,7 +76,9 @@ const Navbar = () => {
               textDecoration: 'none',
             }}
           >
-            Shop
+            <Link to="home" style={{ textDecoration:'none', color: 'white'}}>
+              Shop
+            </Link>
           </Typography>
 
           {/* basicamente, uma barra para mobile e uma para desktop */}
@@ -108,14 +114,14 @@ const Navbar = () => {
               }}
             >
               <MenuItem onClick={handleProductsClick} > <ShoppingBasketIcon sx={{ marginRight:'.3em' }}/> Products</MenuItem>
+              <MenuItem onClick={handleProductsClick} > <CategoryIcon sx={{ marginRight:'.3em' }}/> Categories</MenuItem>
             </Menu>
+
           </Box>
           <ShoppingBagIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -127,16 +133,27 @@ const Navbar = () => {
               textDecoration: 'none',
             }}
           >
-            Shop
+            <Link to="home" style={{ textDecoration:'none', color: 'white'}}>
+              Shop
+            </Link>
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, alignItems:'center' }}>
             <Button onClick={handleProductsClick} sx={{ my: 2, color: 'white', display: 'block' }}>Products</Button>
+            <CategoriesMenu/>
           </Box>
 
+{/* user profile */}
+          <Box mx={"1em"}>
+            <IconButton>
+                <Badge badgeContent={4} color="warning">
+                  <ShoppingCartIcon sx={{ color: 'white' }}/>
+                </Badge>
+            </IconButton>
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Davi Pinheiro" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Davi Pinheiro" src="/static/images/avatar/2.jpg"/>
               </IconButton>
             </Tooltip>
             <Menu
@@ -155,7 +172,19 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={handleLogout} > <LogoutIcon sx={{ marginRight:'.3em' }}/> Logout</MenuItem>
+              <MenuItem onClick={handleLogout} > 
+                <ListItemIcon>
+                  <PersonIcon/> 
+                </ListItemIcon>
+                Profile
+              </MenuItem>
+              <Divider/>
+              <MenuItem onClick={handleLogout} > 
+                <ListItemIcon>
+                  <LogoutIcon/> 
+                </ListItemIcon>
+                  Logout
+                </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

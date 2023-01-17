@@ -23,7 +23,6 @@ const Home = () => {
     useEffect(() => {
         sendRequest({ url: "https://dummyjson.com/products?limit=3" },
         (data: { limit: number, products: Product[], skip: number, total: number}) => {
-            console.log(data)
             setTrending(data.products);
         })
     }, [])
@@ -31,7 +30,6 @@ const Home = () => {
     useEffect(() => {
         sendRequest({ url: "https://dummyjson.com/products?skip=3&limit=3" },
         (data: { limit: number, products: Product[], skip: number, total: number}) => {
-            console.log(data)
             setHot(data.products);
         })
     }, [])
@@ -39,23 +37,23 @@ const Home = () => {
     useEffect(() => {
         sendRequest({ url: "https://dummyjson.com/products?skip=6&limit=3" },
         (data: { limit: number, products: Product[], skip: number, total: number}) => {
-            console.log(data)
             setComingSoon(data.products);
         })
     }, [])
 
     return (
-        <Box >
+        <Box paddingTop={'1em'} color={'white'}>
+            <h1>Recommended products for you</h1>
             <Stack direction={"column"} display={'flex'} justifyContent={'center'} alignItems={'center'} padding={4} color={"white"} gap={4}>
-                <Paper elevation={4} variant={'outlined'} sx={{ maxWidth:'50em', width:'100%', display:'flex', justifyContent:'center', flexWrap:'wrap', padding:3 }}> 
+                <Paper elevation={4} sx={{ maxWidth:'45em', width:'100%', display:'flex', justifyContent:'center', flexWrap:'wrap', padding:3 }}> 
                     <ProductCard productList={trending} title="Trending" seeMore={true} icon={<SellIcon style={{color: "goldenrod"}}/>} />
                 </Paper>
 
-                <Paper elevation={4} sx={{ maxWidth:'50em', width:'100%', display:'flex', justifyContent:'center', flexWrap:'wrap', padding:3 }}> 
+                <Paper elevation={4} sx={{ maxWidth:'45em', width:'100%', display:'flex', justifyContent:'center', flexWrap:'wrap', padding:3 }}> 
                     <ProductCard productList={hot} title="Hot" seeMore={true} icon={<WhatshotIcon style={{ color: 'red' }}/>} />
                 </Paper>
 
-                <Paper elevation={4} sx={{ maxWidth:'50em', width:'100%', display:'flex', justifyContent:'center', flexWrap:'wrap', padding:3 }}> 
+                <Paper elevation={4} sx={{ maxWidth:'45em', width:'100%', display:'flex', justifyContent:'center', flexWrap:'wrap', padding:3 }}> 
                     <ProductCard productList={comingSoon} title="Coming soon..." seeMore={true} icon={<AccessAlarmIcon style={{ color: 'green'}}/>}/>
                 </Paper>
             </Stack>
