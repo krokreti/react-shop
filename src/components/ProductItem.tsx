@@ -1,12 +1,18 @@
-import { Chip, Paper, Stack } from "@mui/material";
+import { Chip, makeStyles, Paper, Stack } from "@mui/material";
 import Product from "../models/Product";
 import StarIcon from '@mui/icons-material/Star';
 
+
 const ProductItem: React.FC<{product: Product | undefined}> = (props) => {
+
     return (
         <Paper
             elevation={3}
-            sx={{ width:'10em' }}
+            sx={{ width:'10em', transition:'.5s',
+                ':hover': {
+                    transform: 'scale(1.1)'
+                }
+            }}
         >   
             <Stack direction={"column"} display={"flex"} justifyContent={"space-between"} height={"15em"} >
                 <Stack direction={"column"}>

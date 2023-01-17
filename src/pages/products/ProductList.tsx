@@ -21,7 +21,7 @@ const ProductList = () => {
 
  return (<Container>
  <Box>
-     <Stack my={"2em"} gap={2}>
+     <Stack my={"2em"} gap={2} sx={{ color:'white'}}>
          <h1>Products</h1>
          <h3>Here you find the best products!</h3>
      </Stack>
