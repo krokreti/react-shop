@@ -1,11 +1,8 @@
-import { Box, Container, Stack } from "@mui/material";
 import React from "react"
+import { Box, Container, Stack } from "@mui/material";
+import Children from "../../models/Children";
 
-type Props = {
-    children?: React.ReactNode
-};
-
-const MiniCard: React.FC<Props> = (props) => {
+const MiniCard: React.FC<Children> = (props) => {
     return (
         <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <Box

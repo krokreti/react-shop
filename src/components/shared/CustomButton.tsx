@@ -19,6 +19,7 @@ const CustomButton: React.FC<ButtonProps> = (props) => {
             type={"button"}
             disabled={props.disabled ?? false}
             startIcon={props.startIcon}
+            endIcon={props.endIcon}
             onClick={props.onClick}
             sx={props.sx}
             >

@@ -12,9 +12,7 @@ const ProductCard: React.FC<{productList: Product[], title?: string, seeMore?:bo
     if(!props.loading) {
         products = (
             props.productList.map((product) => 
-            <Link to={`${product.id}` } key={product.id} style={{ textDecoration:'none' }}>
                 <ProductItem product={product}/>
-            </Link>
             )
         )
     }
