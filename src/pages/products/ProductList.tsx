@@ -25,7 +25,7 @@ const ProductList = () => {
          <h1>Products</h1>
          <h3>Here you find the best products!</h3>
      </Stack>
-     <ProductCard productList={productList}/>
+     <ProductCard productList={productList} loading={isLoading}/>
  </Box>
 </Container>)
 }

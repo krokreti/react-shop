@@ -34,7 +34,7 @@ const CategoriesMenu = () => {
                 setCategories(data);
             })
         )
-    }, [])
+    }, [sendRequest])
 
     return (
         <div>
