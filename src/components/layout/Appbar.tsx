@@ -76,7 +76,7 @@ const Navbar = () => {
               textDecoration: 'none',
             }}
           >
-            <Link to="home" style={{ textDecoration:'none', color: 'white'}}>
+            <Link to="/" style={{ textDecoration:'none', color: 'white'}}>
               Shop
             </Link>
           </Typography>

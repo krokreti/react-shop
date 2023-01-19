@@ -12,7 +12,7 @@ const ProductCard: React.FC<{productList: Product[], title?: string, seeMore?:bo
     if(!props.loading) {
         products = (
             props.productList.map((product) => 
-                <ProductItem product={product}/>
+                <ProductItem product={product} key={product.id}/>
             )
         )
     }

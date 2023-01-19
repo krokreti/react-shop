@@ -14,7 +14,7 @@ const ProductDetailItem:React.FC<{product: Product | undefined}> = (props) => {
         rating = props.product.rating;
         price = props.product.price;
     }
-
+    
     return (
         <Card>
             <Grid container spacing={2}>
