@@ -17,6 +17,7 @@ const ProductDetailItem:React.FC<{product: Product | undefined}> = (props) => {
     
     return (
         <Card>
+
             <Grid container spacing={2}>
                 <Grid item xs={12} md={12}>
                     <h1>{props.product?.title}</h1>
@@ -27,7 +28,10 @@ const ProductDetailItem:React.FC<{product: Product | undefined}> = (props) => {
                 <Grid item xs={12} md={6}>
                     <Stack direction={'column'} gap={2}>
                         <Stack direction={'row'} >
-                            <h4>{props.product?.description}</h4>
+                            About {props.product?.title}:
+                        </Stack>
+                        <Stack direction={'row'} >
+                            <h4 style={{ textAlign:'start' }}>{props.product?.description}</h4>
                         </Stack>
                         <Stack direction={'row'}>
                             Rating:

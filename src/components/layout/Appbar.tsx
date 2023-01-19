@@ -56,6 +56,10 @@ const Navbar = () => {
     const handleProductsClick = () => {
       navigate('products')
     }
+
+    const handleCategoriesClick = () => {
+      navigate('category')
+    }
     
     return (
         <AppBar position="static">
@@ -114,7 +118,7 @@ const Navbar = () => {
               }}
             >
               <MenuItem onClick={handleProductsClick} > <ShoppingBasketIcon sx={{ marginRight:'.3em' }}/> Products</MenuItem>
-              <MenuItem onClick={handleProductsClick} > <CategoryIcon sx={{ marginRight:'.3em' }}/> Categories</MenuItem>
+              <MenuItem onClick={handleCategoriesClick} > <CategoryIcon sx={{ marginRight:'.3em' }}/> Categories</MenuItem>
             </Menu>
 
           </Box>

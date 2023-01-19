@@ -1,7 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom'
 import App from '../App'
 import ProductDetailCard from '../components/ProductDetailCard'
-import Category from '../pages/categories/Category'
+import CategoryList from '../pages/categories/CategoryList'
+import CategoryDetail from '../pages/categories/CategoryDetail'
 import Error from '../pages/error/Error'
 import Home from '../pages/home/Home'
 import Login from '../pages/login/Login'
@@ -27,8 +28,12 @@ export const router = createBrowserRouter([
           element: <ProductDetailCard/>
         },
         {
+          path: 'category',
+          element: <CategoryList/>,
+        },
+        {
           path: 'category/:idCategory',
-          element: <Category/>
+          element: <CategoryDetail/>
         }
       ]
     },
