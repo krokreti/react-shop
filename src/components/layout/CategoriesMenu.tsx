@@ -20,7 +20,7 @@ const CategoriesMenu = () => {
     };
     const handleMenuItemClick = (event: React.MouseEvent<HTMLElement>, categorie: string) => {
         console.log(categorie)
-        navigate(`/categories/${categorie}`)
+        navigate(`/category/${categorie}`)
         setAnchorEl(null);
     }
     const { error, isLoading, sendRequest } = useHttp();

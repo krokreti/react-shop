@@ -1,5 +1,8 @@
+import { useParams } from "react-router-dom";
+
 const Category = () => {
-    return <>1 aaa</>
+    const params = useParams();
+    return <>{params.idCategory}</>
 }
 
 export default Category;
