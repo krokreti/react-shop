@@ -22,7 +22,7 @@ const Category = () => {
         (data: { limit: number, products: Product[], skip: number, total: number } ) => {
             setProducts(data.products);
         })
-    }, [sendRequest])
+    }, [sendRequest, params])
     
     return (<>
         <Card >

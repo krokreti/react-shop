@@ -14,14 +14,14 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useAppDispatch } from '../../hooks/redux-hooks';
 import { useNavigate } from 'react-router-dom';
 import { authActions } from '../../store/auth-slice';
-import { Badge, Button, Divider, ListItemIcon } from '@mui/material';
+import { Button, Divider, ListItemIcon } from '@mui/material';
 import { Link } from 'react-router-dom';
 import CategoryIcon from '@mui/icons-material/Category';
 import CategoriesMenu from './CategoriesMenu';
+import CartAmountButton from './CartAmountButton';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -139,7 +139,7 @@ const Navbar = () => {
               textDecoration: 'none',
             }}
           >
-            <Link to="home" style={{ textDecoration:'none', color: 'white'}}>
+            <Link to="/" style={{ textDecoration:'none', color: 'white'}}>
               Shop
             </Link>
           </Typography>
@@ -150,11 +150,7 @@ const Navbar = () => {
 
 {/* user profile */}
           <Box mx={"1em"}>
-            <IconButton>
-                <Badge badgeContent={4} color="warning">
-                  <ShoppingCartIcon sx={{ color: 'white' }}/>
-                </Badge>
-            </IconButton>
+            <CartAmountButton/>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
