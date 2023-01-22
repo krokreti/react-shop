@@ -27,7 +27,7 @@ const Category = () => {
     return (<>
         <Card >
                 <h1 style={{ margin:'1em' }}>{CapitalizeFirstLetter(category)}</h1>
-            <Stack direction={'row'} flexWrap={'wrap'} gap={2}>
+            <Stack direction={'row'} flexWrap={'wrap'} gap={2} display={'flex'} justifyContent={'center'}>
                 {products.map((product) => (
                     <ProductItem product={product} key={product.id}/>
                 ))}

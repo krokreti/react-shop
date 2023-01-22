@@ -3,10 +3,12 @@ import { Stack } from '@mui/material'
 import useHttp from "../../hooks/use-http";
 import CategoryItem from "../../components/CategoryItem";
 import LoadingCard from "../../components/shared/LoadingCard";
+import { useNavigate } from "react-router-dom";
 
 const Categories = () => {
     const [category, setCategory] = useState<string[]>([])
     const { error, isLoading, sendRequest } = useHttp();
+    const navigate = useNavigate();
 
     useEffect(() => {
         sendRequest({
@@ -19,6 +21,7 @@ const Categories = () => {
 
     const categoryClickHandler = (item: string) => {
         console.log(item)
+        navigate(`/category/${item}`)
     }
 
     return (

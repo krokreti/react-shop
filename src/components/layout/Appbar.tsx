@@ -54,10 +54,12 @@ const Navbar = () => {
     }
 
     const handleProductsClick = () => {
+      setAnchorElNav(null);
       navigate('products')
     }
 
     const handleCategoriesClick = () => {
+      setAnchorElNav(null);
       navigate('category')
     }
     

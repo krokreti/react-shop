@@ -1,6 +1,7 @@
 import { Box, Container, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
 import ProductCard from "../../components/ProductCard";
+import Card from "../../components/shared/Card";
 import useHttp from "../../hooks/use-http";
 import Product from "../../models/Product";
 
@@ -21,9 +22,11 @@ const ProductList = () => {
 
  return (<Container>
  <Box marginBottom={'4em'}>
-     <Stack my={"2em"} gap={2} sx={{ color:'white'}}>
-         <h1>Products</h1>
-         <h3>Here you find the best products!</h3>
+     <Stack my={"2em"} gap={2} >
+        <Card>
+            <h1>Products</h1>
+            <h3>Here you find the best products!</h3>
+        </Card>
      </Stack>
      <ProductCard productList={productList} loading={isLoading}/>
  </Box>
