@@ -21,7 +21,7 @@ const Categories = () => {
 
     const categoryClickHandler = (item: string) => {
         console.log(item)
-        navigate(`/category/${item}`)
+        navigate(`/category/${item }`)
     }
 
     return (
