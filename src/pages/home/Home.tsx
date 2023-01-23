@@ -43,8 +43,8 @@ const Home = () => {
     }, [sendRequest])
 
     return (
-        <Box paddingTop={'1em'}>
-            <Card width={'45em'} borderRadius={"4px"}>
+        <Box paddingTop={'1em'} >
+            <Card width={'45em'} borderRadius={"4px"} marginX={2}>
                 <h1>Recommended products for you</h1>
             </Card>
             <Stack direction={"column"} display={'flex'} justifyContent={'center'} alignItems={'center'} padding={4} color={"white"} gap={4}>
