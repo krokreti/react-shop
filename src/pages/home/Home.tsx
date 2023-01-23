@@ -6,6 +6,7 @@ import Product from "../../models/Product";
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import SellIcon from '@mui/icons-material/Sell';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+import Card from "../../components/shared/Card";
 
 const Home = () => {
     // const auth = useAppSelector(authStatus);
@@ -42,8 +43,10 @@ const Home = () => {
     }, [sendRequest])
 
     return (
-        <Box paddingTop={'1em'} color={'white'}>
-            <h1>Recommended products for you</h1>
+        <Box paddingTop={'1em'}>
+            <Card width={'45em'} borderRadius={"4px"}>
+                <h1>Recommended products for you</h1>
+            </Card>
             <Stack direction={"column"} display={'flex'} justifyContent={'center'} alignItems={'center'} padding={4} color={"white"} gap={4}>
                 <Paper elevation={4} sx={{ maxWidth:'45em', width:'100%', display:'flex', justifyContent:'center', flexWrap:'wrap', padding:3 }}> 
                     <ProductCard productList={trending} title="Trending" seeMore={true} icon={<SellIcon style={{color: "goldenrod"}}/>} loading={isLoading}/>
