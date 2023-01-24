@@ -9,7 +9,7 @@ const CartAmountButton = () => {
     const cartAmount = useAppSelector(totalAmount);
     // const cart2 = useAppSelector(state => state.cart.total)
     const navigate = useNavigate();
-    
+
     const cartButtonHandler = () => {
         if(cartAmount===0) {
             return
@@ -19,7 +19,7 @@ const CartAmountButton = () => {
 
     return (
         <>
-            <IconButton onClick={cartButtonHandler}>
+            <IconButton onClick={cartButtonHandler} >
                 <Badge badgeContent={cartAmount} color="warning">
                     <ShoppingCartIcon sx={{ color: 'white' }}/>
                 </Badge>

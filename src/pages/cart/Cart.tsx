@@ -4,10 +4,19 @@ import Card from "../../components/shared/Card";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import Product from "../../models/Product";
 import { cart, cartActions } from "../../store/cart-slice";
+import React, { useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 
-const Cart = () => {
+const Cart:React.FC = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const cartArray = useAppSelector(cart);
+
+    useEffect(() => {
+        if(cartArray.length===0) {
+            navigate("/")
+        }
+    }, [cartArray])
 
     const addButtonHandler = (product: Product) => {
         dispatch(cartActions.addToCart(product))

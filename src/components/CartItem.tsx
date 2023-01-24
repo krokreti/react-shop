@@ -1,5 +1,5 @@
 import CartProduct from "../models/CartProduct"
-import { Grid, Stack } from "@mui/material"
+import { Grid, Paper, Stack } from "@mui/material"
 import CustomButton from "./shared/CustomButton"
 import Input from "./shared/Input"
 import React from "react"
@@ -27,36 +27,40 @@ const CartItem: React.FC<{
     }
 
     return (
-        <Grid container gap={2}> 
-            <Grid item xs={4} md={4} >
-                <img src={cartProduct.product.thumbnail} alt={cartProduct.product.title} style={{ width:'100%',  borderRadius:'5px' }}/>
-            </Grid>
-            <Grid item xs={7} md={7} >
-                <Stack direction={'column'} justifyContent={'center'} alignItems={'center'} height={'100%'} gap={1}>
-                    <span>{cartProduct.product.title}</span>
-                    <Stack direction={'row'} display={"flex"} justifyContent={'center'} alignItems={'center'}>
-                        <CustomButton text="-" color="error" onClick={removeButtonHandler}/>
-                        <Input 
-                            id={'amount'} 
-                            label={""} 
-                            onChange={inputChangeHandler} 
-                            value={cartProduct.amount} 
-                            inputProps={{
-                                readOnly: true, 
-                                style: { 
-                                    textAlign:'center'
-                                } 
-                            }} 
-                            sx={{ 
-                                width:'4em', 
-                                height:'2.5em' 
-                            }}
-                        />
-                        <CustomButton text="+" color="error" onClick={addButtonHandler}/>
+        <Paper elevation={3} >
+            <Grid container gap={2}> 
+                <Grid item xs={12} md={4} >
+                    <Stack display={'flex'} justifyContent={'center'} alignItems={'center'} height={'100%'} >
+                        <img src={cartProduct.product.thumbnail} alt={cartProduct.product.title} style={{ width:'100%',  borderRadius:'5px' }}/>
                     </Stack>
-                </Stack>
+                </Grid>
+                <Grid item xs={12} md={7} sx={{ paddingBottom: { xs: '1em', md:'0' } }}>
+                    <Stack direction={'column'} justifyContent={'center'} alignItems={'center'} height={'100%'} gap={1}>
+                        <span>{cartProduct.product.title}</span>
+                        <Stack direction={'row'} display={"flex"} justifyContent={'center'} alignItems={'center'}>
+                            <CustomButton text="-" color="error" onClick={removeButtonHandler} />
+                            <Input 
+                                id={'amount'} 
+                                label={""} 
+                                onChange={inputChangeHandler} 
+                                value={cartProduct.amount} 
+                                inputProps={{
+                                    readOnly: true, 
+                                    style: { 
+                                        textAlign:'center'
+                                    } 
+                                }} 
+                                sx={{ 
+                                    width:'4em', 
+                                    height:'2.5em' 
+                                }}
+                            />
+                            <CustomButton text="+" color="error" onClick={addButtonHandler}/>
+                        </Stack>
+                    </Stack>
+                </Grid>
             </Grid>
-        </Grid>
+        </Paper>
     )
 }
 

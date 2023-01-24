@@ -32,6 +32,12 @@ const addItemToCart = (state: cartState, action: PayloadAction<Product>) => {
 }
 
 const removeItemFromCart = (state: cartState, action: PayloadAction<number>) => {
+    const index = state.cart.findIndex((product) => product.product.id === action.payload)
+    if(state.cart[index].amount==1) {
+        state.cart.splice(index, 1)
+    } else {
+        state.cart[index].amount--;
+    }
 }
 
 const returnTotalAmount = (state: cartState): number => {
