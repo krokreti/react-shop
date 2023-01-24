@@ -1,7 +1,7 @@
 import Product from './Product'
 
 interface CartProduct {
-    product: Product[],
+    product: Product,
     amount: number,
 }
 

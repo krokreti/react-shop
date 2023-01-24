@@ -6,12 +6,12 @@ import { useAppSelector } from '../../hooks/redux-hooks';
 import { totalAmount } from '../../store/cart-slice';
 
 const CartAmountButton = () => {
-    const cart = useAppSelector(totalAmount);
+    const cartAmount = useAppSelector(totalAmount);
     // const cart2 = useAppSelector(state => state.cart.total)
     const navigate = useNavigate();
     
     const cartButtonHandler = () => {
-        if(cart===0) {
+        if(cartAmount===0) {
             return
         }
         navigate("/cart")
@@ -20,7 +20,7 @@ const CartAmountButton = () => {
     return (
         <>
             <IconButton onClick={cartButtonHandler}>
-                <Badge badgeContent={cart} color="warning">
+                <Badge badgeContent={cartAmount} color="warning">
                     <ShoppingCartIcon sx={{ color: 'white' }}/>
                 </Badge>
             </IconButton>

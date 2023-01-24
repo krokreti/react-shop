@@ -13,7 +13,6 @@ const retrieveStoredToken = () => {
     if(storedToken) {
         initialToken = storedToken;
         userLoggedIn = true;
-        console.log(userLoggedIn)
     }
     return {
         token: initialToken,

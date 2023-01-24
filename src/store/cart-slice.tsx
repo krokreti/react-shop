@@ -1,6 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from ".";
 import CartProduct from "../models/CartProduct";
+import Product from "../models/Product";
 
 interface cartState {
     cart: CartProduct[],
@@ -12,19 +13,43 @@ const initialCartState: cartState = {
     total: 0
 }
 
+const addItemToCart = (state: cartState, action: PayloadAction<Product>) => {
+    let item: CartProduct = {
+        product: action.payload,
+        amount: 1
+    };
+    
+    if(state.cart.length===0) {
+        state.cart.push(item)
+    } else {
+        let index: number = state.cart.findIndex(product => product.product.id === action.payload.id)
+        if(index===-1) {
+            state.cart.push(item)
+        } else {
+            state.cart[index].amount++;
+        }
+    }
+}
+
+const removeItemFromCart = (state: cartState, action: PayloadAction<number>) => {
+}
+
+const returnTotalAmount = (state: cartState): number => {
+    var total = state.cart.reduce((total, currentValue) => (total + currentValue.amount), 0)
+
+    return total;
+}
+
 const cartSlice = createSlice ({
     name: 'cart',
     initialState: initialCartState,
     reducers: {
-        addToCart() {
-
-        },
-        removeFromCart() {
-
-        }
+        addToCart: addItemToCart,
+        removeFromCart: removeItemFromCart,
     }
 })
 
 export const cartActions = cartSlice.actions;
-export const totalAmount = (state: RootState) => state.cart.total
+export const totalAmount = (state: RootState) => returnTotalAmount(state.cart)
+export const cart = (state: RootState) => state.cart.cart
 export default cartSlice.reducer;

@@ -5,14 +5,25 @@ import NumberToCurrency from './helpers/NumberToCurrency';
 import Card from './shared/Card';
 import CustomButton from './shared/CustomButton';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
+import { cart, cartActions } from '../store/cart-slice';
 
 const ProductDetailItem:React.FC<{product: Product | undefined}> = (props) => {
-
+    const dispatch = useAppDispatch()
+    const cartArray = useAppSelector(cart);
     let rating: number = 0;
     let price: number = 0;
     if(props.product) {
         rating = props.product.rating;
         price = props.product.price;
+    }
+
+    const addToCart = (productItem: Product | undefined) => {
+        if(productItem) {
+            dispatch(cartActions.addToCart(productItem))
+        }
+
+        console.log(cartArray)
     }
     
     return (
@@ -53,7 +64,7 @@ const ProductDetailItem:React.FC<{product: Product | undefined}> = (props) => {
                     </Stack>
                 </Grid>
                 <Grid item xs={12} md={12}>
-                    <CustomButton text='add to cart' onClick={ () => { console.log('oi')}} endIcon={<ShoppingCartCheckoutIcon/>} sx={{ width:'100%' }}/>
+                    <CustomButton text='add to cart' onClick={ addToCart.bind(null, props.product) } endIcon={<ShoppingCartCheckoutIcon/>} sx={{ width:'100%' }}/>
                 </Grid>
             </Grid>
         </Card>
