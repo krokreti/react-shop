@@ -9,6 +9,7 @@ import useHttp from "../../hooks/use-http";
 import User from "../../models/User";
 import CustomLoadingButton from "../../components/shared/CustomLoadingButton";
 import MiniCard from "../../components/shared/MiniCard";
+import { SnippetFolderSharp } from "@mui/icons-material";
 
 
 const Login = () => {
@@ -58,7 +59,7 @@ const Login = () => {
         }, (data: User) => {
             console.log(data);
             dispatch(authActions.login(data.idToken));
-            navigate("/home")
+            navigate("/")
         })
     }
 
