@@ -33,7 +33,7 @@ const addItemToCart = (state: cartState, action: PayloadAction<Product>) => {
 
 const removeItemFromCart = (state: cartState, action: PayloadAction<number>) => {
     const index = state.cart.findIndex((product) => product.product.id === action.payload)
-    if(state.cart[index].amount==1) {
+    if(state.cart[index].amount===1) {
         state.cart.splice(index, 1)
     } else {
         state.cart[index].amount--;
@@ -41,8 +41,12 @@ const removeItemFromCart = (state: cartState, action: PayloadAction<number>) => 
 }
 
 const returnTotalAmount = (state: cartState): number => {
-    var total = state.cart.reduce((total, currentValue) => (total + currentValue.amount), 0)
+    var total = state.cart.reduce((total, currentValue) => (total + currentValue.amount), 0);
+    return total;
+}
 
+const returnTotalValue = (state: cartState): number => {
+    var total = state.cart.reduce((total, currentValue) => (total + (currentValue.amount * currentValue.product.price)), 0);
     return total;
 }
 
@@ -57,5 +61,6 @@ const cartSlice = createSlice ({
 
 export const cartActions = cartSlice.actions;
 export const totalAmount = (state: RootState) => returnTotalAmount(state.cart)
+export const totalValue = (state: RootState) => returnTotalValue(state.cart)
 export const cart = (state: RootState) => state.cart.cart
 export default cartSlice.reducer;
