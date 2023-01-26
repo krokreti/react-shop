@@ -7,7 +7,7 @@ const MiniCard: React.FC<Children> = (props) => {
         <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <Box
                 p={4}
-                bgcolor={'#cfe8fc'}
+                bgcolor={'#fff'}
                 width={'20em'}
                 height={'fit-content'}
                 borderRadius={'30px'}

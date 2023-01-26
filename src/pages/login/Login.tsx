@@ -9,14 +9,12 @@ import useHttp from "../../hooks/use-http";
 import User from "../../models/User";
 import CustomLoadingButton from "../../components/shared/CustomLoadingButton";
 import MiniCard from "../../components/shared/MiniCard";
-import { SnippetFolderSharp } from "@mui/icons-material";
-
 
 const Login = () => {
     const [formIsValid, setFormIsValid] = useState<boolean>(true);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const { error: connectionError, isLoading, sendRequest: sendLoginRequest } = useHttp();
+    const { error, isLoading, sendRequest: sendLoginRequest } = useHttp();
 
     const {
         value: enteredLogin,
@@ -65,6 +63,7 @@ const Login = () => {
 
     const loginErrorMessage = enteredLoginHasError ? "Please, enter a valid email!" : "" ;
     const passwordErrorMessage = enteredPasswordHasError ? "Please, enter a valid password!" : "" ;
+    const fetchErrorMessage = error ? "Invalid email/password" : "";
 
     return (
         <MiniCard>
@@ -95,6 +94,7 @@ const Login = () => {
                 disabled={!formIsValid}
                 onClick={submitHandler}
             />
+
             <Box rowGap={2} sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
                 {/* <Link to={'/signup'}>Forgot password?</Link>   */}
                 <span>Don't have an account yet?</span>

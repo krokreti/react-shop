@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
@@ -22,6 +21,7 @@ import { Link } from 'react-router-dom';
 import CategoryIcon from '@mui/icons-material/Category';
 import CategoriesMenu from './CategoriesMenu';
 import CartAmountButton from './CartAmountButton';
+import AppbarAvatar from './AppbarAvatar';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -155,7 +155,7 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Davi Pinheiro" src="/static/images/avatar/2.jpg"/>
+                <AppbarAvatar/>
               </IconButton>
             </Tooltip>
             <Menu

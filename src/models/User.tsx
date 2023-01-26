@@ -1,7 +1,9 @@
 interface User {
     email: string,
-    password: string,
+    displayName: string,
     idToken: string,
+    photoUrl?: string,
+    createdAt?: string,
 }
 
 export default User
