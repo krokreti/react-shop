@@ -22,7 +22,7 @@ const Login = () => {
         isValid: enteredLoginIsValid,
         valueChangeHandler: inputLoginChangeHandler,
         valueBlurHandler: inputLoginBlurHandler,
-    } = useInput(value => value.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/));
+    } = useInput(value => value.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) !== null);
 
     const {
         value: enteredPassword,
@@ -33,15 +33,15 @@ const Login = () => {
     } = useInput(value => value.trim() !== '');
 
     useEffect(() => {
-        if(enteredLoginIsValid && enteredPasswordIsValid) {
+        if (enteredLoginIsValid && enteredPasswordIsValid) {
             setFormIsValid(true)
         } else {
             setFormIsValid(false)
         }
     }, [enteredLoginIsValid, enteredPasswordIsValid])
 
-    const submitHandler = async() => {
 
+    const submitHandler = async () => {
         sendLoginRequest({
             url: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDYL8MXKHBY8-munFeQbKZd43SbAZneRR4',
             method: 'POST',
@@ -53,7 +53,7 @@ const Login = () => {
                 password: enteredPassword,
                 returnSecureToken: true
             }
-            
+
         }, (data: User) => {
             console.log(data);
             dispatch(authActions.login(data.idToken));
@@ -61,34 +61,34 @@ const Login = () => {
         })
     }
 
-    const loginErrorMessage = enteredLoginHasError ? "Please, enter a valid email!" : "" ;
-    const passwordErrorMessage = enteredPasswordHasError ? "Please, enter a valid password!" : "" ;
+    const loginErrorMessage = enteredLoginHasError ? "Please, enter a valid email!" : "";
+    const passwordErrorMessage = enteredPasswordHasError ? "Please, enter a valid password!" : "";
     const fetchErrorMessage = error ? "Invalid email/password" : "";
 
     return (
         <MiniCard>
             <span>Welcome to React Shop!</span>
             <Input
-                id="email" 
-                label="Email" 
-                type="email" 
-                onChange={inputLoginChangeHandler} 
-                onBlur={inputLoginBlurHandler} 
-                value={enteredLogin} 
-                error={enteredLoginHasError} 
+                id="email"
+                label="Email"
+                type="email"
+                onChange={inputLoginChangeHandler}
+                onBlur={inputLoginBlurHandler}
+                value={enteredLogin}
+                error={enteredLoginHasError}
                 helperText={loginErrorMessage}
             />
-            <Input 
-                id="password" 
-                label="Password" 
-                type="password" 
-                onChange={inputPasswordChangeHandler} 
-                onBlur={inputPassordBlurHandler} 
-                value={enteredPassword} 
-                error={enteredPasswordHasError} 
+            <Input
+                id="password"
+                label="Password"
+                type="password"
+                onChange={inputPasswordChangeHandler}
+                onBlur={inputPassordBlurHandler}
+                value={enteredPassword}
+                error={enteredPasswordHasError}
                 helperText={passwordErrorMessage}
             />
-            <CustomLoadingButton 
+            <CustomLoadingButton
                 text="Login"
                 isLoading={isLoading}
                 disabled={!formIsValid}

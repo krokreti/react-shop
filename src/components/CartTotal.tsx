@@ -15,7 +15,7 @@ const CartTotal:React.FC<{total: number}> = (props) => {
         <Paper elevation={6} sx={{  padding: '1em', position: 'fixed', bottom:'0', width:'100%', borderRadius:'0' }} > 
             <Stack direction={'column'} gap={2}>
                 <span><strong>Total: {NumberToCurrency(props.total)}</strong></span>
-                <CustomLoadingButton text='PAY NOW!' endIcon={<CreditCardIcon/>} isLoading={isLoading} onClick={ConfirmPaymentButtonHandler} color={'success'}/>
+                <CustomLoadingButton text='PAY NOW!' endIcon={<CreditCardIcon/>} isLoading={isLoading} onClick={ConfirmPaymentButtonHandler} color={'success'} />
             </Stack>
         </Paper>
     </>)
