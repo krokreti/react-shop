@@ -5,19 +5,19 @@ import Input from "../../components/shared/Input";
 import React, { useEffect, useState } from "react";
 import useInput from "../../hooks/use-input";
 import { Link, useNavigate } from "react-router-dom";
-import useHttp from "../../hooks/use-http";
 import CustomLoadingButton from "../../components/shared/CustomLoadingButton";
 import User from "../../models/User";
 import { useAppDispatch } from "../../hooks/redux-hooks";
 import { authActions } from "../../store/auth-slice";
 import UserResponseError from '../../models/UserResponseError';
+import Message from "../../components/shared/Message";
 
 const Signup = () => {
-    const navigate = useNavigate();
     const [formIsValid, setFormIsValid] = useState<boolean>(false);
-    const { sendRequest, isLoading, error } = useHttp();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [fetchErrorMessage, setFetchErrorMessage] = useState<string>('');
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const [fetchError, setFecthError] = useState<UserResponseError>();
 
     const {
         value: enteredEmail,
@@ -54,38 +54,69 @@ const Signup = () => {
         }
     }, [emailIsValid, password2IsValid, passwordIsValid])
 
+
     const onSubmit = async () => {
-        console.log("data sent!")
-        fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDYL8MXKHBY8-munFeQbKZd43SbAZneRR4', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: enteredEmail,
-                password: enteredPassword,
-                returnSecureToken: true,
+        setIsLoading(true)
+        // fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDYL8MXKHBY8-munFeQbKZd43SbAZneRR4', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         email: enteredEmail,
+        //         password: enteredPassword,
+        //         returnSecureToken: true,
+        //     })
+        // }).then((response) => {
+        //     if (response.ok) {
+        //         response.json()
+        //             .then((data: User) => {
+        //                 emailReset();
+        //                 passwordReset();
+        //                 password2Reset();
+        //                 dispatch(authActions.login(data.idToken));
+        //                 navigate('/');
+        //             })
+        //     } else {
+        //         response.json()
+        //             .then((data: UserResponseError) => {
+        //                 setFecthError(data);
+        //                 throw new Error(data.error.message);
+        //             });
+        //     }
+        // }).catch((err) => {
+        //     console.log("deu ruim")
+        //     console.log(err)
+        // })
+        try {
+            const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDYL8MXKHBY8-munFeQbKZd43SbAZneRR4', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: enteredEmail,
+                    password: enteredPassword,
+                    returnSecureToken: true
+                })
             })
-        }).then((response) => {
+
             if (response.ok) {
-                response.json()
-                    .then((data: User) => {
-                        console.log(data)
-                        emailReset();
-                        passwordReset();
-                        password2Reset();
-                        dispatch(authActions.login(data.idToken));
-                        navigate('/');
-                    })
+                const data: User = await response.json();
+                emailReset();
+                passwordReset();
+                password2Reset();
+                dispatch(authActions.login(data.idToken));
+                navigate('/');
             } else {
-                response.json().then((data: UserResponseError) => {
-                    setFecthError(data);
-                    throw new Error(data.error.message);
-                });
+                const data: UserResponseError = await response.json();
+                setFetchErrorMessage(data.error.message);
+                throw new Error(data.error.message);
             }
-        }).catch((err) => {
+        } catch (err) {
             console.log(err)
-        })
+        }
+        setIsLoading(false);
     }
 
     const emailErrorMessage = emailHasError ? 'Please, enter a valid email!' : '';
@@ -146,9 +177,7 @@ const Signup = () => {
                         isLoading={isLoading}
                         disabled={!formIsValid}
                     />
-                    {error && (
-                        <span>{error}</span>
-                    )}
+                    <Message show={!!fetchErrorMessage} text={fetchErrorMessage} />
                 </Stack>
                 <Box rowGap={2} sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', marginTop: '1em' }}>
                     <span>Already have an account yet?</span>
