@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Snackbar from '@mui/material/Snackbar';
+import MuiAlert, { AlertColor, AlertProps } from '@mui/material/Alert';
 
-const Message: React.FC<{ text: string, show: boolean }> = (props) => {
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+    props,
+    ref,
+) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+const Message: React.FC<{ text: string, show: boolean, color: AlertColor }> = (props) => {
+    const [open, setOpen] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (props.show === true) {
+            setOpen(true);
+        } else {
+            setOpen(false)
+        }
+    }, [props.show])
+
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
 
     return (
-        <Snackbar open={props.show} autoHideDuration={4000} message={props.text} />
+        <Snackbar open={open} autoHideDuration={4000} onClose={handleClose} >
+            <Alert onClose={handleClose} severity={props.color} sx={{ width: '100%' }}>
+                {props.text}
+            </Alert>
+        </Snackbar>
     )
 }
 

@@ -177,7 +177,7 @@ const Signup = () => {
                         isLoading={isLoading}
                         disabled={!formIsValid}
                     />
-                    <Message show={!!fetchErrorMessage} text={fetchErrorMessage} />
+                    <Message show={!!fetchErrorMessage} text={fetchErrorMessage} color={"error"} />
                 </Stack>
                 <Box rowGap={2} sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', marginTop: '1em' }}>
                     <span>Already have an account yet?</span>
