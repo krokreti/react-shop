@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Snackbar from '@mui/material/Snackbar';
-import MuiAlert, { AlertColor, AlertProps } from '@mui/material/Alert';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import MessageType from "../../models/MessageType";
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
@@ -9,14 +10,14 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const Message: React.FC<{ text: string, show: boolean, color: AlertColor }> = (props) => {
+const Message: React.FC<MessageType> = (props) => {
     const [open, setOpen] = useState<boolean>(false);
 
     useEffect(() => {
-        if (props.show === true) {
+        if (props.show) {
             setOpen(true);
         } else {
-            setOpen(false)
+            setOpen(false);
         }
     }, [props.show])
 
@@ -24,7 +25,6 @@ const Message: React.FC<{ text: string, show: boolean, color: AlertColor }> = (p
         if (reason === 'clickaway') {
             return;
         }
-
         setOpen(false);
     };
 

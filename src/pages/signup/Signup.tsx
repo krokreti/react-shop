@@ -11,11 +11,12 @@ import { useAppDispatch } from "../../hooks/redux-hooks";
 import { authActions } from "../../store/auth-slice";
 import UserResponseError from '../../models/UserResponseError';
 import Message from "../../components/shared/Message";
+import MessageType from "../../models/MessageType";
 
 const Signup = () => {
     const [formIsValid, setFormIsValid] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [fetchErrorMessage, setFetchErrorMessage] = useState<string>('');
+    const [fetchMessage, setFetchMessage] = useState<MessageType>();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
@@ -54,6 +55,17 @@ const Signup = () => {
         }
     }, [emailIsValid, password2IsValid, passwordIsValid])
 
+    // useEffect para limpar o valor do fetch error, possibilitando várias mensagens de erro.
+    useEffect(() => {
+        if (fetchMessage) {
+            const timeId = setTimeout(() => {
+                setFetchMessage(undefined)
+            }, 3000)
+            return () => {
+                clearTimeout(timeId)
+            }
+        }
+    }, [fetchMessage])
 
     const onSubmit = async () => {
         setIsLoading(true)
@@ -103,6 +115,11 @@ const Signup = () => {
 
             if (response.ok) {
                 const data: User = await response.json();
+                setFetchMessage({
+                    color: 'success',
+                    show: true,
+                    text: 'Signed up successfully!'
+                });
                 emailReset();
                 passwordReset();
                 password2Reset();
@@ -110,7 +127,11 @@ const Signup = () => {
                 navigate('/');
             } else {
                 const data: UserResponseError = await response.json();
-                setFetchErrorMessage(data.error.message);
+                setFetchMessage({
+                    color: "error",
+                    show: true,
+                    text: data.error.message
+                });
                 throw new Error(data.error.message);
             }
         } catch (err) {
@@ -177,7 +198,9 @@ const Signup = () => {
                         isLoading={isLoading}
                         disabled={!formIsValid}
                     />
-                    <Message show={!!fetchErrorMessage} text={fetchErrorMessage} color={"error"} />
+                    {fetchMessage && (
+                        <Message text={fetchMessage.text} color={fetchMessage.color} show={fetchMessage.show} />
+                    )}
                 </Stack>
                 <Box rowGap={2} sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', marginTop: '1em' }}>
                     <span>Already have an account yet?</span>
