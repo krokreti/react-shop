@@ -1,4 +1,5 @@
 import { Box, CircularProgress } from "@mui/material"
+import React from "react"
 import CustomButton from "./CustomButton"
 
 type ButtonVariantType = "text" | "contained" | "outlined" | undefined
@@ -12,7 +13,7 @@ type ButtonProps = {
     color?: ColorType,
     startIcon?: React.ReactNode
     endIcon?: React.ReactNode
-    onClick: () => void
+    onClick: () => void,
 }
 
 const CustomLoadingButton: React.FC<ButtonProps> = (props) => {

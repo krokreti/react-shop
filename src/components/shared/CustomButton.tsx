@@ -9,14 +9,14 @@ type ButtonProps = {
     disabled?: boolean,
     startIcon?: React.ReactNode,
     endIcon?: React.ReactNode,
-    color? : ColorType
+    color?: ColorType
     sx?: {}
-    onClick: () => void
+    onClick: () => void,
 }
 
 const CustomButton: React.FC<ButtonProps> = (props) => {
     return (
-        <Button 
+        <Button
             variant={props.variant ?? "contained"}
             type={"button"}
             disabled={props.disabled ?? false}
@@ -25,7 +25,7 @@ const CustomButton: React.FC<ButtonProps> = (props) => {
             onClick={props.onClick}
             color={props.color ?? "primary"}
             sx={props.sx}
-            >
+        >
             {props.text}
         </Button>
     )
